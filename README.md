@@ -153,3 +153,4 @@ ros2 lifecycle set /amcl configure
 ros2 lifecycle set /amcl activate
 
 
+sudo apt install ros-humble-imu-tools ros-humble-imu-complementary-filter ros-humble-robot-localization
