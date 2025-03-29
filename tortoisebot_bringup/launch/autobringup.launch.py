@@ -98,6 +98,19 @@ def generate_launch_description():
       name ='pi_camera',
       parameters= [{'height': 360},{'width': 480}],
     )
+  
+  # TODO : config ekf
+  
+  # ekf_node = Node(
+  #     package='robot_localization',
+  #     condition=IfCondition(PythonExpression(['not ', use_sim_time])),
+  #     executable='ekf_node',
+  #     name='ekf_filter_node',
+  #     output='screen',
+  #     parameters=[os.path.join(get_package_share_directory("robot_localization"), 'params', 'ekf_tort.yaml')],
+  #     remappings=[('/odometry/filtered', '/odometry/filtered')]
+  #   )
+  
   # robot_state_publisher_node = launch_ros.actions.Node(
   #       package='robot_state_publisher',
   #       executable='robot_state_publisher',
