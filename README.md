@@ -1,6 +1,8 @@
 # Tortoisebot ROS2 Humble Release
 
-# ![TortoiseBot Banner](https://github.com/rigbetellabs/tortoisebot_docs/raw/master/imgs/packaging/pack_front.png)
+![TortoiseBot Banner](https://github.com/rigbetellabs/tortoisebot_docs/raw/master/imgs/packaging/pack_front.png)
+
+<div align="center">
 
 ![stars](https://img.shields.io/github/stars/rigbetellabs/tortoisebot?style=for-the-badge)
 ![forks](https://img.shields.io/github/forks/rigbetellabs/tortoisebot?style=for-the-badge)
@@ -8,24 +10,22 @@
 ![repo-size](https://img.shields.io/github/repo-size/rigbetellabs/tortoisebot?style=for-the-badge)
 ![contributors](https://img.shields.io/github/contributors/rigbetellabs/tortoisebot?style=for-the-badge)
 
----
-<p align="center"><a href="#connect-with-us-">Connect with Us</a> • <a href="#1-installation">Installation</a> • <a href="#2-setup">Setup</a> • <a href="#3-demos">Demos</a>
+</div>
 
-<h1 align="center"> TortoiseBot </h1>
+<p align="center">
+<a href="#connect-with-us">Connect with Us</a> • 
+<a href="#installation">Installation</a> • 
+<a href="#setup">Setup</a> • 
+<a href="#demos">Demos</a>
+</p>
 
-# Connect with us ![some-changes](https://img.shields.io/badge/some_changes-yellow)
+## Connect with Us
 
-<a href="https://rigbetellabs.com/">![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&label=Rigbetellabs%20Website&style=for-the-badge&up_color=green&up_message=online&url=https%3A%2F%2Frigbetellabs.com%2F)</a>
-<a href="https://rigbetellabs.com/discord">![Discord Channel](https://img.shields.io/discord/890669104330063903?logo=Discord&style=for-the-badge)</a>
-<a href="https://www.youtube.com/channel/UCfIX89y8OvDIbEFZAAciHEA">![Youtube Subscribers](https://img.shields.io/youtube/channel/subscribers/UCfIX89y8OvDIbEFZAAciHEA?label=YT%20Subscribers&style=for-the-badge)</a>
-<a href="https://www.instagram.com/rigbetellabs/">![Instagram](https://img.shields.io/badge/Follow_on-Instagram-pink?style=for-the-badge&logo=appveyor?label=Instagram)</a>
-# 1. Installation
-## 1.1 Required Dependences: 
-```
-sudo apt install ros-humble-joint-state-publisher ros-humble-robot-state-publisher ros-humble-cartographer ros-humble-cartographer-ros ros-humble-gazebo-plugins ros-humble-teleop-twist-keyboard  ros-humble-teleop-twist-joy ros-humble-xacro ros-humble-nav2* ros-humble-urdf 
+<div align="center">
 
-```
-```
+[![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&label=Rigbetellabs%20Website&style=for-the-badge&up_color=green&up_message=online&url=https%3A%2F%2Frigbetellabs.com%2F)](https://rigbetellabs.com/)
+[![Discord](https://img.shields.io/discord/890669104330063903?logo=Discord&style=for-the-badge)](https://rigbetellabs.com/discord)
+[![Youtube](https://img.shields.io/youtube/channel/subscribers/UCfIX89y8OvDIbEFZAAciHEA?label=YT%20Subscribers&style=for-the-badge)](https://www.youtube.com/channel/UCfIX89y8OvDIbEFZAAciHEA)
 cd ~/your workscpace
 colcon build
 ```
@@ -97,3 +97,51 @@ The ReadMe is divided into several sections as per different topics and is const
 RigBetel Labs LLP®, Charholi Bk., via. Loheagaon, Pune - 412105, MH, India 🇮🇳<br>
 🌐 [RigBetelLabs.com](https://rigbetellabs.com) 📞 [+91-8432152998](https://wa.me/918432152998) 📨 getintouch.rbl@gmail.com , info@rigbetellabs.com <br>
 [LinkedIn](http://linkedin.com/company/rigbetellabs/) | [Instagram](http://instagram.com/rigbetellabs/) | [Facebook](http://facebook.com/rigbetellabs) | [Twitter](http://twitter.com/rigbetellabs) | [YouTube](https://www.youtube.com/channel/UCfIX89y8OvDIbEFZAAciHEA) | [Discord Community](https://discord.gg/qDuCSMTjvN)
+
+
+
+# Workspace Setup
+
+## Create ROS2 Workspace
+```bash
+# Create and navigate to workspace
+mkdir -p ~/ROS_WS
+cd ~/ROS_WS
+
+# Clone repository
+git clone -b ros2-humble https://github.com/rigbetellabs/tortoisebot.git
+mv tortoisebot/ src/
+
+# Build workspace
+colcon build
+```
+
+## Troubleshooting Build Issues
+
+If you encounter build errors, try these steps in order:
+
+1. Rebuild workspace:
+```bash
+colcon build
+```
+
+2. Clean and rebuild:
+```bash
+rm -rf build/ install/ log/
+colcon build
+```
+
+3. Build YDLidar SDK manually:
+```bash
+cd ~/ROS_WS/src/YDLidar-SDK
+mkdir -p build && cd build
+cmake ..
+make -j$(nproc) 
+sudo make install
+```
+
+4. Return to workspace root and rebuild:
+```bash
+cd ~/ROS_WS
+colcon build
+```
