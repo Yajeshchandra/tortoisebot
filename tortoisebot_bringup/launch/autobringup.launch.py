@@ -26,16 +26,16 @@ def generate_launch_description():
   params_file_sim = os.path.join(prefix_address, 'config', 'nav2_params_simulation.yaml')
   params_file_robot = os.path.join(prefix_address, 'config', 'nav2_params_robot.yaml')
   
-  map_directory = os.path.join(get_package_share_directory(
-    'tortoisebot_bringup'), 'maps', 'room2.yaml')
-
-  DeclareLaunchArgument('map', default_value=map_directory, description='Full path to map file')
-
-  map_file = LaunchConfiguration('map')
-  
-  # map_file=LaunchConfiguration('map')
   # map_directory = os.path.join(get_package_share_directory(
-  #       'tortoisebot_bringup'), 'maps','room2.yaml')
+  #   'tortoisebot_bringup'), 'maps', 'room2.yaml')
+
+  # DeclareLaunchArgument('map', default_value=map_directory, description='Full path to map file')
+
+  # map_file = LaunchConfiguration('map')
+  
+  map_file=LaunchConfiguration('map')
+  map_directory = os.path.join(get_package_share_directory(
+        'tortoisebot_bringup'), 'maps','room2.yaml')
   use_sim_time=LaunchConfiguration('use_sim_time')
   exploration=LaunchConfiguration('exploration')   
   
@@ -140,6 +140,7 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': use_sim_time},
                     {'autostart': True},
+                    {'bond_timeout': 0.0},
                     {'node_names': ['map_server']}]),
 
     rviz_node,

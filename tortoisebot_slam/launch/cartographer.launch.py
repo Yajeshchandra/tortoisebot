@@ -64,18 +64,18 @@ def generate_launch_description():
       parameters= [{'use_sim_time':use_sim_time}],
       output='screen'
     ),
-    Node(
-      package='cartographer_ros',
-      condition=IfCondition(PythonExpression(['not ', exploration])),
-      executable='cartographer_node',
-      name='as21_cartographer_node',
-      arguments=[
-        '-configuration_directory', config_directory,
-        '-configuration_basename', slam_config
-      ],
-      parameters= [{'use_sim_time':use_sim_time}],
-      output='screen'
-    ),
+    # Node(
+    #   package='cartographer_ros',
+    #   condition=IfCondition(PythonExpression(['not ', exploration])),
+    #   executable='cartographer_node',
+    #   name='as21_cartographer_node',
+    #   arguments=[
+    #     '-configuration_directory', config_directory,
+    #     '-configuration_basename', slam_config
+    #   ],
+    #   parameters= [{'use_sim_time':use_sim_time}],
+    #   output='screen'
+    # ),
 
     Node(
       package='cartographer_ros',

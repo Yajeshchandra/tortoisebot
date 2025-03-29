@@ -147,3 +147,9 @@ cd ~/ROS_WS
 colcon build
 ```
 
+
+
+ros2 lifecycle set /amcl configure
+ros2 lifecycle set /amcl activate
+
+
