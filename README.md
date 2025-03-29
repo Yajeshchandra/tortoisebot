@@ -110,7 +110,7 @@ cd ~/ROS_WS
 
 # Clone repository
 git clone -b ros2-humble https://github.com/rigbetellabs/tortoisebot.git
-mv tortoisebot/ src/
+mv tortoisebot/* src/
 
 # Build workspace
 colcon build
