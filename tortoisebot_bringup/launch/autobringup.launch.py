@@ -41,17 +41,18 @@ def generate_launch_description():
         parameters= [{'use_sim_time': use_sim_time}],
 
     )
+  
+  gazebo_launch_cmd=IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(gazebo_launch_dir, 'gazebo.launch.py')),
+            condition=IfCondition(use_sim_time),
+            launch_arguments={'use_sim_time':use_sim_time}.items())
 
   state_publisher_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(rviz_launch_dir, 'state_publisher.launch.py')),
             launch_arguments={'use_sim_time':use_sim_time}.items())
 
-  gazebo_launch_cmd=IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(gazebo_launch_dir, 'gazebo.launch.py')),
-            condition=IfCondition(use_sim_time),
-            launch_arguments={'use_sim_time':use_sim_time}.items())
 
   navigation_launch_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -90,18 +91,18 @@ def generate_launch_description():
       name ='pi_camera',
       parameters= [{'height': 360},{'width': 480}],
     )
-  robot_state_publisher_node = launch_ros.actions.Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        parameters=[{'use_sim_time': use_sim_time},{'robot_description': ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),value_type=str)}]
-    )
+  # robot_state_publisher_node = launch_ros.actions.Node(
+  #       package='robot_state_publisher',
+  #       executable='robot_state_publisher',
+  #       parameters=[{'use_sim_time': use_sim_time},{'robot_description': ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),value_type=str)}]
+  #   )
 
-  joint_state_publisher_node = launch_ros.actions.Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        name='joint_state_publisher',
-        parameters= [{'use_sim_time': use_sim_time}],
-    )
+  # joint_state_publisher_node = launch_ros.actions.Node(
+  #       package='joint_state_publisher',
+  #       executable='joint_state_publisher',
+  #       name='joint_state_publisher',
+  #       parameters= [{'use_sim_time': use_sim_time}],
+  #   )
   return LaunchDescription([
 
     SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1'),
@@ -136,8 +137,8 @@ def generate_launch_description():
 
     rviz_node,
     state_publisher_launch_cmd,
-    robot_state_publisher_node,
-    joint_state_publisher_node,
+    # robot_state_publisher_node,
+    # joint_state_publisher_node,
     ydlidar_launch_cmd,
     differential_drive_node,
     camera_drive_node,
